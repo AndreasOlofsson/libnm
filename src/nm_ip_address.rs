@@ -17,7 +17,7 @@ glib::glib_wrapper!(
 impl NMIPAddress {
     pub fn get_address(&self) -> String {
         unsafe {
-            String::from_glib_full(libnm_sys::nm_ip_address_get_address(self.to_glib_none().0))
+            String::from_glib_none(libnm_sys::nm_ip_address_get_address(self.to_glib_none().0))
         }
     }
 }

@@ -1,7 +1,7 @@
 [package]
 name = "libnm"
 description = "Rust bindings to libnm"
-version = "0.1.1"
+version = "0.1.2"
 license = "MIT"
 authors = ["Andreas Olofsson <ao@blazar.se>"]
 repository = "https://github.com/AndreasOlofsson/libnm/"
