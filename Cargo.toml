@@ -1,0 +1,13 @@
+[package]
+name = "libnm"
+description = "Rust bindings to libnm"
+version = "0.1.1"
+license = "MIT"
+authors = ["Andreas Olofsson <ao@blazar.se>"]
+repository = "https://github.com/AndreasOlofsson/libnm/"
+edition = "2018"
+
+[dependencies]
+libnm-sys = "0.1.0"
+glib = "0.10.2"
+glib-sys = "0.10.1"
