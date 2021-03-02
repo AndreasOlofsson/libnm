@@ -301,19 +301,29 @@ mod tests {
         for device in client.get_devices() {
             println!("{:#?}", device);
 
-            match device.get_applied_connection() {
-                Ok(connection) => {
-                    for setting in connection.get_settings() {
-                        if let Ok(setting) = setting.downcast::<NMSettingWireless>() {
-                            println!("{:#?}", String::from_utf8_lossy(&setting.get_ssid()));
-                        }
+            if let Some(active_connection) = device.get_active_connection() {
+                let connection = active_connection.get_connection().upcast::<NMConnection>();
+
+                for setting in connection.get_settings() {
+                    if let Ok(setting) = setting.downcast::<NMSettingWireless>() {
+                        println!("{:#?}", String::from_utf8_lossy(&setting.get_ssid()));
                     }
-                },
-                Err(error) => print!("{:#?}", error),
+                }
             }
 
+            // match device.get_applied_connection() {
+            //     Ok(connection) => {
+            //         for setting in connection.get_settings() {
+            //             if let Ok(setting) = setting.downcast::<NMSettingWireless>() {
+            //                 println!("{:#?}", String::from_utf8_lossy(&setting.get_ssid()));
+            //             }
+            //         }
+            //     },
+            //     Err(error) => print!("{:#?}", error),
+            // }
+
             if let Some(config) = device.get_ip4_config() {
-                for address in config.get_adresses() {
+                for address in config.get_addresses() {
                     println!("{:#?}", address.get_address());
                 }
             }

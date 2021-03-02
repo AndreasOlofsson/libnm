@@ -13,7 +13,8 @@ glib::glib_wrapper!(
 impl NMSettingWireless {
     pub fn get_ssid(&self) -> Vec<u8> {
         unsafe {
-            glib::Bytes::from_glib_none(libnm_sys::nm_setting_wireless_get_ssid(self.to_glib_none().0)).to_vec()
+            let stash = self.to_glib_none();
+            glib::Bytes::from_glib_none(libnm_sys::nm_setting_wireless_get_ssid(stash.0)).to_vec()
         }
     }
 }

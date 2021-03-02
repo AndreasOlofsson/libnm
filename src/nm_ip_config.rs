@@ -11,9 +11,10 @@ glib::glib_wrapper!(
 );
 
 impl NMIPConfig {
-    pub fn get_adresses(&self) -> Vec<NMIPAddress> {
+    pub fn get_addresses(&self) -> Vec<NMIPAddress> {
         unsafe {
-            NMIPAddress::from_glib_none_as_vec(libnm_sys::nm_ip_config_get_addresses(self.to_glib_none().0))
+            let stash = self.to_glib_none();
+            NMIPAddress::from_glib_none_as_vec(libnm_sys::nm_ip_config_get_addresses(stash.0))
         }
     }
 }

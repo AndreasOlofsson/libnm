@@ -11,13 +11,15 @@ glib::glib_wrapper!(
 impl NMSetting {
     pub fn get_name(&self) -> String {
         unsafe {
-            String::from_glib_none(libnm_sys::nm_setting_get_name(self.to_glib_none().0))
+            let stash = self.to_glib_none();
+            String::from_glib_none(libnm_sys::nm_setting_get_name(stash.0))
         }
     }
 
     pub fn to_string(&self) -> String {
         unsafe {
-            String::from_glib_full(libnm_sys::nm_setting_to_string(self.to_glib_none().0))
+            let stash = self.to_glib_none();
+            String::from_glib_full(libnm_sys::nm_setting_to_string(stash.0))
         }
     }
 }

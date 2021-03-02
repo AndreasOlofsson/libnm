@@ -26,12 +26,12 @@ impl NMClient {
         }
     }
 
-    /// Gets all the known network devices. 
+    /// Gets all the known network devices.
     pub fn get_devices(&self) -> Vec<NMDevice> {
         unsafe {
             let devices = libnm_sys::nm_client_get_devices(self.to_glib_none().0);
 
-            NMDevice::from_glib_none_as_vec(devices as *const glib_sys::GPtrArray)
+            NMDevice::from_glib_none_as_vec(devices)
         }
     }
 }
